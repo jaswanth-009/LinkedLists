@@ -45,13 +45,9 @@ void doesCycleExist(Node* head) {
 	Node* slow = head;
 	Node* fast = head;
 
-	while(fast != NULL) {
+	while(fast != NULL && fast->next != NULL) {
 		slow = slow->next;
-		fast = fast->next;
-
-		if(fast != NULL){
-			fast = fast->next;
-		}
+		fast = fast->next->next;
 
 		if(slow == fast) {
 			cout << "Exists\n";
@@ -59,7 +55,7 @@ void doesCycleExist(Node* head) {
 		}
 	}
 
-	if(fast == NULL) {
+	if(fast == NULL || fast->next == NULL) {
 		cout << "No cycle\n";
 	}
 }
@@ -74,7 +70,7 @@ l1.insertNode(3);
 l1.insertNode(4);
 l1.insertNode(5);
 
-l1.head->next->next->next->next->next = l1.head;
+//l1.head->next->next->next->next->next = l1.head;
 
 doesCycleExist(l1.head);
 
